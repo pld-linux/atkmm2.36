@@ -2,32 +2,32 @@
 # Conditional build:
 %bcond_without	static_libs	# don't build static libraries
 
+%define		atk_ver		1:2.18
+%define		glibmm_ver	2.68.0
 Summary:	A C++ interface for atk library
 Summary(pl.UTF-8):	Interfejs C++ dla biblioteki atk
-Name:		atkmm
-Version:	2.28.1
+Name:		atkmm2.36
+Version:	2.36.0
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
-Source0:	https://download.gnome.org/sources/atkmm/2.28/%{name}-%{version}.tar.xz
-# Source0-md5:	03d9d02736645083cbb824c926750624
+Source0:	https://download.gnome.org/sources/atkmm/2.36/atkmm-%{version}.tar.xz
+# Source0-md5:	b3c8253a56850bf3bbfd963482480996
 URL:		https://www.gtkmm.org/
-BuildRequires:	atk-devel >= 1:2.18.0
+BuildRequires:	atk-devel >= %{atk_ver}
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	doxygen >= 1:1.8.9
-BuildRequires:	glibmm-devel >= 2.46.2
-BuildRequires:	libstdc++-devel >= 6:4.7
+BuildRequires:	glibmm2.68-devel >= %{glibmm_ver}
+BuildRequires:	libstdc++-devel >= 6:7
 BuildRequires:	libtool >= 2:2.0
-BuildRequires:	mm-common >= 0.9.10
+BuildRequires:	mm-common >= 0.9.12
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.752
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
-Requires:	atk >= 1:2.18.0
-Requires:	glibmm >= 2.46.2
-Provides:	gtkmm-atk
-Obsoletes:	gtkmm-atk
+Requires:	atk >= %{atk_ver}
+Requires:	glibmm2.68 >= %{glibmm_ver}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -41,11 +41,9 @@ Summary:	Header files for atkmm library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki atkmm
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	atk-devel >= 1:2.18.0
-Requires:	glibmm-devel >= 2.46.2
-Requires:	libstdc++-devel >= 6:4.7
-Provides:	gtkmm-atk-devel
-Obsoletes:	gtkmm-atk-devel
+Requires:	atk-devel >= %{atk_ver}
+Requires:	glibmm2.68-devel >= %{glibmm_ver}
+Requires:	libstdc++-devel >= 6:7
 
 %description devel
 Header files for atkmm library.
@@ -71,8 +69,6 @@ Summary:	atkmm static library
 Summary(pl.UTF-8):	Biblioteka statyczna atkmm
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
-Provides:	gtkmm-atk-static
-Obsoletes:	gtkmm-atk-static
 
 %description static
 Static atkmm library.
@@ -81,7 +77,7 @@ Static atkmm library.
 Statyczna biblioteka atkmm.
 
 %prep
-%setup -q
+%setup -q -n atkmm-%{version}
 
 %build
 mm-common-prepare --copy --force
@@ -101,8 +97,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	libdocdir=%{_gtkdocdir}/atkmm-1.6 \
-	devhelpdir=%{_gtkdocdir}/atkmm-1.6
+	libdocdir=%{_gtkdocdir}/atkmm-2.36 \
+	devhelpdir=%{_gtkdocdir}/atkmm-2.36
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
 
@@ -115,22 +111,22 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
-%attr(755,root,root) %{_libdir}/libatkmm-1.6.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libatkmm-1.6.so.1
+%attr(755,root,root) %{_libdir}/libatkmm-2.36.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libatkmm-2.36.so.1
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libatkmm-1.6.so
-%{_libdir}/atkmm-1.6
-%{_includedir}/atkmm-1.6
-%{_pkgconfigdir}/atkmm-1.6.pc
+%attr(755,root,root) %{_libdir}/libatkmm-2.36.so
+%{_libdir}/atkmm-2.36
+%{_includedir}/atkmm-2.36
+%{_pkgconfigdir}/atkmm-2.36.pc
 
 %files apidocs
 %defattr(644,root,root,755)
-%{_gtkdocdir}/atkmm-1.6
+%{_gtkdocdir}/atkmm-2.36
 
 %if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/libatkmm-1.6.a
+%{_libdir}/libatkmm-2.36.a
 %endif
