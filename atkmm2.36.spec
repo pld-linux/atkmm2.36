@@ -2,17 +2,17 @@
 # Conditional build:
 %bcond_without	static_libs	# don't build static libraries
 
-%define		atk_ver		1:2.18
+%define		atk_ver		1:2.33.3
 %define		glibmm_ver	2.68.0
 Summary:	A C++ interface for atk library
 Summary(pl.UTF-8):	Interfejs C++ dla biblioteki atk
 Name:		atkmm2.36
-Version:	2.36.1
+Version:	2.36.2
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	https://download.gnome.org/sources/atkmm/2.36/atkmm-%{version}.tar.xz
-# Source0-md5:	1fd50d49341f202a27b286dadebfd8b3
+# Source0-md5:	5756ac6337f491e0e005936693af641a
 URL:		https://www.gtkmm.org/
 BuildRequires:	atk-devel >= %{atk_ver}
 BuildRequires:	autoconf >= 2.59
@@ -111,7 +111,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS README
+%doc AUTHORS ChangeLog NEWS README.md
 %attr(755,root,root) %{_libdir}/libatkmm-2.36.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libatkmm-2.36.so.1
 
