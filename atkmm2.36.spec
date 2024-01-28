@@ -7,12 +7,12 @@
 Summary:	A C++ interface for atk library
 Summary(pl.UTF-8):	Interfejs C++ dla biblioteki atk
 Name:		atkmm2.36
-Version:	2.36.2
+Version:	2.36.3
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	https://download.gnome.org/sources/atkmm/2.36/atkmm-%{version}.tar.xz
-# Source0-md5:	5756ac6337f491e0e005936693af641a
+# Source0-md5:	8b03a39a5e3dd0d3c040ece345f7a786
 URL:		https://www.gtkmm.org/
 BuildRequires:	atk-devel >= %{atk_ver}
 BuildRequires:	autoconf >= 2.59
@@ -111,7 +111,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS README.md
+%doc ChangeLog NEWS README.md
 %attr(755,root,root) %{_libdir}/libatkmm-2.36.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libatkmm-2.36.so.1
 
